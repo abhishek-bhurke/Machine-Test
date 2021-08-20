@@ -1,0 +1,225 @@
+<div class="mat-dialog-container">
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content style="background-color: white; height:100%;">
+    <form [formGroup]="registrationForm" style="background-color: white; height:100%;">
+        <div class="row">
+            <div class="col-lg-4">
+                <img [src]="imageSrc" *ngIf="imageSrc" style="height: 310px; width:325px" src="assets/avatar.png">
+                <div class="form-group">
+                    <!-- <label for="file">File</label> -->
+                    <input formControlName="file" id="file" accept="image/*" type="file" class="inputfile inputfile-1"
+                        (change)="onFileChange($event)">
+                    <label for="file"><svg xmlns="assets/avatar.png" width="15" height="15"
+                            viewBox="0 0 20 17">
+                            <path
+                                d="assets/avatar.png" />
+                        </svg> Upload your photo</label>
+                </div>
+                <div *ngIf="registrationForm.controls['file'].invalid && (registrationForm.controls['file'].dirty || registrationForm.controls['file'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['file'].errors?.required">
+                        Profile Picture is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div style="display:flex;" class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="fname"
+                        maxlength="20" class="form-control" placeholder=" First-Name" required>
+
+                    <input style="width:50%;" type="text" id="lN" formControlName="lname" class="form-control"
+                        placeholder="Last-Name" required>
+
+                </div>
+
+                <div *ngIf="registrationForm.controls['fname'].invalid && (registrationForm.controls['fname'].dirty || registrationForm.controls['fname'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['fname'].errors?.required">
+                        First-Name is required.
+                    </div>
+                    <div *ngIf="registrationForm.controls['fname'].errors?.pattern">
+                        Only Alphabets are acceptable in First-Name.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['lname'].invalid && (registrationForm.controls['lname'].dirty || registrationForm.controls['lname'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['lname'].errors?.required">
+                        Last-Name is required.
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="email" id="mail" formControlName="mail" class="form-control" placeholder="Email"
+                            required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['mail'].invalid && (registrationForm.controls['mail'].dirty || registrationForm.controls['mail'].touched)"
+                        class="alert alert-warning">
+                        <div *ngIf="registrationForm.controls['mail'].errors?.required">
+                            Email is required.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="text" id="mno" formControlName="mno" class="form-control"
+                            placeholder="Mobile Number" min="100000000" max="9999999999" required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['mno'].invalid && (registrationForm.controls['mno'].dirty || registrationForm.controls['mno'].touched)"
+                        class="alert alert-warning">
+                        <div *ngIf="registrationForm.controls['mno'].errors?.required">
+                            Mobile Number is required.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group" style="display:flex;">
+                        <p style="color:black;">Age:</p>
+                        <br><br>
+                        <input style="width:100%;" formControlName="age" type="range" min="18" max="60" class="slider"
+                            id="myRange"><br>
+                        <p><span id="demo" style="color:black;">{{registrationForm.controls['age'].value}}</span></p>
+                    </div>
+                   
+                </div>
+                <div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="city" formControlName="city" placeholder="City"
+                            required>
+                    </div>
+                    <div *ngIf="registrationForm.controls['city'].invalid && (registrationForm.controls['city'].dirty || registrationForm.controls['city'].touched)"
+                        class="alert alert-warning">
+                        <div *ngIf="registrationForm.controls['city'].errors?.required">
+                            City is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display:flex;">
+                    <select class="form-control" formControlName="state" name="stats"
+                        style="width:90%; margin-right:10px;" type="text" style="font-size:1rem; color:grey;">
+                        <option value=null>State</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+            <option value="Daman and Diu">Daman and Diu</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+                    </select>
+
+                    <select name="country" formControlName="country" style="width:90%; margin-right:10px;" type="text">
+                        <option style="font-size:1rem; color:grey;" value=null>Country</option>
+                        <option value="India">India</option>
+                    </select>
+                </div>
+                <div *ngIf="registrationForm.controls['state'].invalid && (registrationForm.controls['state'].dirty || registrationForm.controls['state'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['state'].errors?.required">
+                        State is required.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['country'].invalid && (registrationForm.controls['country'].dirty || registrationForm.controls['country'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['country'].errors?.required">
+                        Country is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="address" formControlName="address"
+                        style="width:90%; margin-right:10px;" type="text" style="font-size:1rem; color:grey;">
+                        <option value=null>Address</option>
+                        <option value="Home">Home</option>
+                        <option value="Company">Company</option>
+                    </select>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].invalid && (registrationForm.controls['address'].dirty || registrationForm.controls['address'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['address'].errors?.required">
+                        Address is required.
+                    </div>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].value === 'Home'" style="display:flex;"
+                    class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="address1"
+                        class="form-control" placeholder="Address 1" required>
+                    <input style="width:50%;" type="text" id="lN" formControlName="address2" class="form-control"
+                        placeholder="Address 2" required>
+                </div>
+
+                <div *ngIf="registrationForm.controls['address'].value === 'Company'" style="display:flex;"
+                    class="form-group">
+                    <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="address1"
+                        class="form-control" placeholder="Company Address 1" required>
+                    <input style="width:50%;" type="text" id="lN" formControlName="address2" class="form-control"
+                        placeholder="Company Address 2" required>
+                </div>
+                <div *ngIf="registrationForm.controls['address1'].invalid && (registrationForm.controls['address1'].dirty || registrationForm.controls['address1'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['address1'].errors?.required">
+                        {{registrationForm.controls['address'].value === 'Company' ? 'Company' : ''}} Address 1 is
+                        required.
+                    </div>
+                </div>
+                <div *ngIf="registrationForm.controls['address2'].invalid && (registrationForm.controls['address2'].dirty || registrationForm.controls['address2'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="registrationForm.controls['address2'].errors?.required">
+                        {{registrationForm.controls['address'].value === 'Company' ? 'Company' : ''}} Address 2 is
+                        required.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" formControlName="tags" placeholder="Tags" required>
+                    <div *ngIf="registrationForm.controls['tags'].invalid && (registrationForm.controls['tags'].dirty || registrationForm.controls['tags'].touched)"
+                        class="alert alert-warning">
+                        <div *ngIf="registrationForm.controls['tags'].errors?.required">
+                            Tags are required.
+                        </div>
+                    </div>
+                    <div>
+
+                        <div class="form-group">
+                            <input type="checkbox" formControlName="che" id="che" value="true">
+                            <label for="che" style="color:grey;">Subscribe to Newsletter</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div style="margin-left: 350px; text-align: center; margin-top: 40px; ">
+    <button style="margin-right: 30px;" class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+</div>
+</div>
