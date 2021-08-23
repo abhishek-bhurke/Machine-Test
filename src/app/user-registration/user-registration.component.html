@@ -3,7 +3,8 @@
 <div mat-dialog-content style="background-color: white; height:100%;">
     <form [formGroup]="registrationForm" style="background-color: white; height:100%;">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4" [ngClass]="title ==='Edit Photo' ? 'editPhoto':'' ">
+    
                 <img [src]="imageSrc" *ngIf="imageSrc" style="height: 310px; width:325px" src="assets/avatar.png">
                 <div class="form-group">
                     <!-- <label for="file">File</label> -->
@@ -22,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8" *ngIf="title !== 'Edit Photo'">
                 <div style="display:flex;" class="form-group">
                     <input style="width:50%; margin-right:10px;" id="fN" type="text" formControlName="fname"
                         maxlength="20" class="form-control" placeholder=" First-Name" required>
@@ -210,7 +211,7 @@
 
                         <div class="form-group">
                             <input type="checkbox" formControlName="che" id="che" value="true">
-                            <label for="che" style="color:grey;">Subscribe to Newsletter</label>
+                            <label for="che" style="color:grey;">&emsp;Subscribe to Newsletter</label>
                         </div>
                     </div>
                 </div>
@@ -218,7 +219,7 @@
         </div>
     </form>
 </div>
-<div style="margin-left: 350px; text-align: center; margin-top: 40px; ">
+<div  [ngClass]="title === 'Edit Photo'? 'editPhoto':''" style="margin-left: 350px; text-align: center; margin-top: 40px; ">
     <button style="margin-right: 30px;" class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
     <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
 </div>

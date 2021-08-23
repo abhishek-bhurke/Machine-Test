@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserRegistrationComponent } from '../user-registration/user-registration.component';
-import { UserServiceService } from '../user-service.service';
+import { User } from '../user.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ import { UserServiceService } from '../user-service.service';
 export class HomeComponent implements OnInit {
   title = 'UserProfile';
 
-  constructor(public dialog: MatDialog, public router: Router, private userService: UserServiceService){ }
+  constructor(public dialog: MatDialog, public router: Router, private user: User){ }
   ngOnInit(): void {
   }
 
@@ -26,10 +26,13 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.userService.setUserData(result);
-      if(result !== null)
-      this.router.navigateByUrl('/profile');
-      
+      if (result !== null) {
+        this.user.saveUserProfile(result).subscribe((response: any) => {
+          console.log('saveResponse', response);
+          this.user.setUserData(response.id);
+          this.router.navigateByUrl('/profile');
+        });
+      }
     });
   }
 }

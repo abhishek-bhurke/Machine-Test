@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserDetails } from './user-details';
+import { UserDetails } from '../user-details.service';
+import { User } from '../user.service';
+
 
 @Component({
   selector: 'app-user-registration',
@@ -10,7 +12,7 @@ import { UserDetails } from './user-details';
 })
 export class UserRegistrationComponent implements OnInit {
   title: string;
-  imageSrc = 'https://media2.fdncms.com/charlotte/imager/u/zoom/13089785/blank-profile-picture-973460_960_720.png';
+  imageSrc = 'assets/avatar.png';
   userDetails?: UserDetails;
   registrationForm: FormGroup;
 
@@ -19,18 +21,18 @@ export class UserRegistrationComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     public dialogRef: MatDialogRef<UserRegistrationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,private user:User) {
     this.title = data.title;
-    let file = '';
+    
     this.userDetails = data.userData;
     if (data.userData) {
       this.imageSrc = data.userData.file;
-      file  = data.userData.file.replace(/^.*[\\\/]/, '');
+      
     }
 // fetching data from registerpage to userdetails
 
     this.registrationForm = new FormGroup({
-      file: new FormControl(file, Validators.required),
+      file: this.title === 'Register' ? new FormControl('', Validators.required) : new FormControl(''),
       fname: new FormControl(this.userDetails?.fname, [Validators.required, Validators.pattern('^[a-zA-Z \-\']+')]),
       lname: new FormControl(this.userDetails?.lname, Validators.required),
       mail: new FormControl(this.userDetails?.mail, Validators.required),

@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <div class="w3-bar">
-              <div class="w3-bar-item w3-button w3-hover-none w3-border-white w3-topbar w3-hover-border-blue w3-hover-text-blue"><a href="#myCarousel">HOME</a></div>
+              <div class="w3-bar-item w3-button w3-hover-none w3-border-white w3-topbar w3-hover-border-blue w3-hover-text-blue"><a href="#myCarousel">HOME</a> </div>
               <div class="w3-bar-item w3-button w3-hover-none w3-border-white w3-topbar w3-hover-border-blue w3-hover-text-blue">ABOUT US</div>
               <div class="w3-bar-item w3-button w3-hover-none w3-border-white w3-topbar w3-hover-border-blue w3-hover-text-blue">JOBS</div>
               <div class="w3-bar-item w3-button w3-hover-none w3-border-white w3-topbar w3-hover-border-blue w3-hover-text-blue">CLIENTS</div>
@@ -20,14 +20,19 @@
 </nav>
 <br>
 <br>
-<div style=" display:flex;">
+<!-- <div style=" display:flex;"> -->
 
-    <div class="profileimg">
-        <img style="width:310px; height:325px; margin:20px; margin-left: 200px; margin-top: 50px;" [src]="userData?.file">
-        <button style="align-self: center; margin-left: 300px;" type="button" class="btn btn-warning" (click)="editProfile()"> Edit Profile</button>
+    <div class="profileimg" style="height:500px;">
+      <div class="col-md-5">
+        <img style="width:310px; height:325px; margin:20px; margin-top: 50px;" [src]="userData?.file">
+        
+          <button style="align-self: center; margin-left: 230px;" type="button" class="btn btn-warning" (click)="editProfile(1)">
+            Edit Photo</button>
+          <button style="align-self: center; margin-left: 50px;" type="button" class="btn btn-warning" (click)="editProfile(2)">
+            Edit Profile</button>
       </div>
-      
-    <div class="col-md-8">
+      <div class="col-md-7">
+    
         <p style="margin-left:150px; font-size: medium; float:center;  margin-top:100px;">I'm {{userData?.fname}} {{userData?.lname}} and Im 
             above {{userData?.age}} years and you can send your emails to
             <br><a href>{{userData?.mail}}</a>, I live in the state of {{userData?.state}}.I like to play {{userData?.tags}}.And
@@ -35,8 +40,8 @@
             <br>Please reach out to me through my phone number {{userData?.mno}}.
         </p><br><br>
         <button style="align-self: center; margin-left: 300px;" type="button" class="btn btn-success">I Agree</button>
-
-    </div>
+</div>
+    
 </div>
 <br><br><br>
  <!-- Footer -->

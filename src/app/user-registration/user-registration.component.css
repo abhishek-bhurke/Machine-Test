@@ -77,3 +77,7 @@ input[type=text] {
 .inputfile-1 + label:hover {
     background-color: white;
 }
+.editPhoto {
+    width: 35%;
+    margin: 0 auto;
+}
